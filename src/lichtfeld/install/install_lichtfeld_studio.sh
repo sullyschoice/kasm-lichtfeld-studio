@@ -68,7 +68,8 @@ export PATH=$VCPKG_ROOT:$PATH
 echo 'VCPKG_ROOT=/opt/vcpkg' >> $HOME/.bashrc
 echo 'export PATH=$VCPKG_ROOT:$PATH' >> $HOME/.bashrc
 cd /opt/
-git clone https://github.com/MrNeRF/LichtFeld-Studio
+# Upstream now vendors dependencies (e.g. external/libvterm) as git submodules
+git clone --recursive https://github.com/MrNeRF/LichtFeld-Studio
 cd LichtFeld-Studio
 wget https://download.pytorch.org/libtorch/cu128/libtorch-cxx11-abi-shared-with-deps-2.7.0%2Bcu128.zip
 unzip libtorch-cxx11-abi-shared-with-deps-2.7.0+cu128.zip -d external/
