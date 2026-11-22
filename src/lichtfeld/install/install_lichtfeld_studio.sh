@@ -28,10 +28,16 @@ apt-get install -y --no-install-recommends \
         libxcursor-dev \
         xorg-dev \
         libglu1-mesa-dev \
+        libgtk-3-dev \
         vim \
         nano \
         htop \
         ninja-build \
+        nasm \
+        autoconf \
+        autoconf-archive \
+        automake \
+        libtool \
         software-properties-common
 
 add-apt-repository -y ppa:ubuntu-toolchain-r/test
