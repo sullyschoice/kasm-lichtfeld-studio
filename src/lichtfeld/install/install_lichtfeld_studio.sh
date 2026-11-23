@@ -88,6 +88,8 @@ echo 'PATH=/usr/local/cuda-12.8/bin:$PATH' >> $HOME/.bashrc
 echo 'LD_LIBRARY_PATH=/usr/local/cuda-12.8/lib64:$LD_LIBRARY_PATH' >> $HOME/.bashrc
 echo 'CUDACXX=/usr/local/cuda-12.8/bin/nvcc' >> $HOME/.bashrc
 
-cmake -B build -DCMAKE_BUILD_TYPE=Release -G Ninja -DCMAKE_CUDA_COMPILER=/usr/local/cuda-12.8/bin/nvcc -DCMAKE_LIBRARY_PATH="/usr/local/cuda/lib64;/usr/local/cuda/lib64/stubs"  -DCUDACXX=/usr/local/cuda-12.8/bin/nvcc
+# BUILD_PYTHON_STUBS=OFF: stub generation imports the built module, which needs the NVIDIA
+# driver (libcuda.so.1) that is not present during an image build. Stubs are IDE-only.
+cmake -B build -DCMAKE_BUILD_TYPE=Release -DBUILD_PYTHON_STUBS=OFF -G Ninja -DCMAKE_CUDA_COMPILER=/usr/local/cuda-12.8/bin/nvcc -DCMAKE_LIBRARY_PATH="/usr/local/cuda/lib64;/usr/local/cuda/lib64/stubs"  -DCUDACXX=/usr/local/cuda-12.8/bin/nvcc
 cmake --build build -- -j$(nproc)
 chown -R 1000:1000 /opt/LichtFeld-Studio
